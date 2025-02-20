@@ -595,10 +595,14 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
+  opacity: 0;
   background-color: var(--navy-blue-modal);
   z-index: 1000;
   overflow: auto;
   overscroll-behavior: contain;
+  transition-property: opacity, visibility;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .overlay::-webkit-scrollbar {
@@ -607,17 +611,24 @@ a {
 
 .overlay.is-open {
   display: block;
+  opacity: 1;
 }
 
-.form {
-  position: relative;
-  margin: 80px auto;
-  padding: 72px 24px 32px;
-  max-width: 408px;
+.form-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 408px;
+  min-height: 584px;
   border-radius: 4px;
+  padding: 72px 24px;
   background: var(--dairy);
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+  transition-property: transform;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .form-title {
@@ -626,55 +637,53 @@ a {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  letter-spacing: 0.32px;
+  letter-spacing: 0.02em;
   margin-bottom: 16px;
 }
 
-.form-label {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.form-row {
+  margin-bottom: 8px;
+}
 
+.form-label {
+  display: block;
+  margin-bottom: 4px;
   color: var(--light-slate);
   font-size: 12px;
   line-height: 1.166;
-  letter-spacing: 0.48px;
+  letter-spacing: 0.04em;
   transition-property: color;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
 
-.form-label svg {
+.form-input-wrap {
+  position: relative;
+}
+
+.input-icon {
   position: absolute;
   bottom: 4px;
+  top: 50%;
   transform: translateY(-50%);
   left: 16px;
   fill: var(--light-slate);
-  transition-property: fill;
+  transition-property: fill, color;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
 
-.form-label:focus-within {
-  color: var(--color-focus);
-}
-
-.form-label:focus-within svg {
-  color: var(--color-focus);
-}
-
 .form-input,
 .form-textarea {
-  outline: none;
-  min-height: 40px;
+  width: 100%;
+  outline: transparent;
+  height: 40px;
   padding: 8px 16px 8px 38px;
   border-radius: 4px;
   border: 1px solid var(--navy-blue-modal);
   font-size: 12px;
   line-height: 1.166;
-  letter-spacing: 0.48px;
-  margin-bottom: 8px;
+  letter-spacing: 0.04em;
   transition-property: border-color;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
@@ -682,11 +691,22 @@ a {
 
 .form-textarea {
   padding: 8px 16px;
+  height: 120px;
+  line-height: 1.17;
+  resize: none;
 }
 
-.form-label:focus-within .form-input,
-.form-label:focus-within .form-textarea {
+.form-row:focus-within .form-input,
+.form-row:focus-within .form-textarea {
   border-color: var(--color-focus);
+}
+
+.form-row:focus-within .form-label {
+  color: var(--color-focus);
+}
+
+.form-row:focus-within .input-icon {
+  color: var(--color-focus);
 }
 
 .form-input::placeholder,
@@ -697,7 +717,7 @@ a {
   letter-spacing: 0.48px;
 }
 
-.form-accept {
+.form-accept-label {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -709,43 +729,37 @@ a {
   cursor: pointer;
 }
 
-.form-accept input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.form-accept .checkbox {
-  display: inline-block;
+.form-accept-label .checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 16px;
   height: 16px;
-}
-
-.form-accept .icon-noactive,
-.form-accept .icon-active {
-  position: absolute;
-  opacity: 1;
-  transition-property: opacity;
+  border: 1px solid #2e2f4266;
+  border-radius: 2px;
+  transition-property: border;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
 
-.form-accept .icon-active {
-  opacity: 0;
+.checkbox .icon-active {
+  color: transparent;
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
-.form-accept input[type='checkbox']:checked ~ .checkbox .icon-noactive {
-  opacity: 0;
+#user-privacy:checked ~ .form-accept-label .checkbox {
+  border-color: transparent;
 }
 
-.form-accept input[type='checkbox']:checked ~ .checkbox .icon-active {
+#user-privacy:checked ~ .form-accept-label .checkbox .icon-active {
   opacity: 1;
   color: var(--color-focus);
 }
 
-.form-accept a {
+.form-accept-label a {
   color: var(--color-focus);
   font-size: 12px;
   letter-spacing: 0.48px;
@@ -758,19 +772,44 @@ a {
 }
 
 .form-close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   position: absolute;
   top: 24px;
   right: 24px;
-  background: none;
-  overflow-y: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--cornflower);
+  border: 1px solid #d0d2e3;
+  transition-property: background-color, border;
+}
+
+.btn-close-icon {
+  min-width: 100%;
+  transition-property: transition;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+}
+
+.form-close-button:hover,
+.form-close-button:focus {
+  background-color: #404bbf;
+  border: none;
+}
+
+.form-close-button:hover .btn-close-icon,
+.form-close-button:focus .btn-close-icon {
+  fill: var(--white);
 }
 
 .form-submit-button {
-  margin: 0 auto;
+  display: block;
   min-width: 169px;
-  display: flex;
-  padding: 16px 32px;
+  height: 56px;
+  margin: 0 auto;
   justify-content: center;
   gap: 10px;
   border-radius: 4px;
@@ -780,7 +819,7 @@ a {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  letter-spacing: 0.64px;
+  letter-spacing: 0.04em;
 }
 
 .btn-subscribe:hover,
