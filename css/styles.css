@@ -522,21 +522,30 @@ a {
   margin-right: 80px;
 }
 
-.subscribe form {
+.subscribe-heading {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  margin-bottom: 16px;
+}
+
+.subscribe-form {
   display: flex;
   gap: 24px;
   align-items: end;
 }
 
 .subscribe-label {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  gap: 16px;
-  color: var(--white);
+  gap: 16px; */
+  /* color: var(--white);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  letter-spacing: 0.32px;
+  letter-spacing: 0.32px; */
 }
 
 .subscribe-input {
@@ -553,7 +562,7 @@ a {
   color: var(--white);
   font-size: 12px;
   line-height: 2;
-  letter-spacing: 0.48px;
+  letter-spacing: 0.04px;
 }
 
 .subscribe-input::placeholder {
@@ -563,11 +572,20 @@ a {
 .btn-subscribe {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 8px 24px;
+  justify-content: center;
+  min-width: 165px;
+  height: 40px;
   border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
   color: var(--white);
   fill: var(--white);
+}
+
+.btn-subscribe-icon {
+  margin-left: 16px;
 }
 
 .overlay {
