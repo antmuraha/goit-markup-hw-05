@@ -729,7 +729,7 @@ a {
   cursor: pointer;
 }
 
-.form-accept-label .checkbox {
+.checkbox {
   display: inline-flex;
   align-items: center;
   justify-content: center;
