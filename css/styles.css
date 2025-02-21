@@ -736,9 +736,8 @@ a {
   position: relative;
   width: 16px;
   height: 16px;
-  border: 1px solid var(--navy-blue-modal);
   border-radius: 2px;
-  fill: transparent;
+  border: 1px solid var(--navy-blue-modal);
   transition-property: border, background-color, fill;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
@@ -752,14 +751,14 @@ a {
   transition-timing-function: var(--transition-timing-function);
 }
 
-#user-privacy:checked ~ .form-accept-label .checkbox {
+#user-privacy:checked ~ .form-accept-label span {
   border-color: transparent;
   background-color: #404bbf;
   border: none;
   fill: #404bbf;
 }
 
-#user-privacy:checked ~ .form-accept-label .checkbox .icon-active {
+#user-privacy:checked ~ .form-accept-label span .icon-active {
   opacity: 1;
   color: var(--color-focus);
 }
