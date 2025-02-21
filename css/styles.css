@@ -754,7 +754,6 @@ a {
 #user-privacy:checked ~ .form-accept-label span {
   border-color: transparent;
   background-color: #404bbf;
-  border: none;
   fill: #404bbf;
 }
 
