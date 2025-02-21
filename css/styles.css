@@ -72,7 +72,7 @@ button {
   border: none;
   cursor: pointer;
   background-color: var(--button-background);
-  transition-property: background-color;
+  transition-property: background-color, border;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
@@ -755,14 +755,14 @@ a {
   transition-timing-function: var(--transition-timing-function);
 }
 
-.user-privacy:checked ~ .form-accept-label .checkbox {
+#user-privacy:checked ~ .form-accept-label .checkbox {
   border-color: transparent;
   background-color: #404bbf;
   border: none;
   fill: #404bbf;
 }
 
-.user-privacy:checked ~ .form-accept-label .checkbox .icon-active {
+#user-privacy:checked ~ .form-accept-label .checkbox .icon-active {
   opacity: 1;
   color: var(--color-focus);
 }
