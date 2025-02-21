@@ -555,7 +555,7 @@ a {
   color: var(--white);
   font-size: 12px;
   line-height: 2;
-  letter-spacing: 0.04px;
+  letter-spacing: 0.04em;
 }
 
 .subscribe-input::placeholder {
@@ -665,7 +665,7 @@ a {
   transform: translateY(-50%);
   left: 16px;
   fill: var(--light-slate);
-  transition-property: fill, color;
+  transition-property: fill;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
@@ -692,6 +692,7 @@ a {
   height: 120px;
   line-height: 1.17;
   resize: none;
+  color: var(--navy-blue-modal);
 }
 
 .form-row:focus-within .form-input,
@@ -726,7 +727,7 @@ a {
   gap: 6px;
   color: var(--light-slate);
   font-size: 12px;
-  line-height: 1.166;
+  letter-spacing: 0.04em;
   line-height: 1.17;
   cursor: pointer;
 }
@@ -740,6 +741,7 @@ a {
   height: 16px;
   border: 1px solid rgba(46, 47, 66, 0.4);
   border-radius: 2px;
+  fill: transparent;
   transition-property: border, background-color, fill;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
@@ -753,11 +755,14 @@ a {
   transition-timing-function: var(--transition-timing-function);
 }
 
-#user-privacy:checked ~ .form-accept-label .checkbox {
+.user-privacy:checked ~ .form-accept-label .checkbox {
   border-color: transparent;
+  background-color: #404bbf;
+  border: none;
+  fill: #404bbf;
 }
 
-#user-privacy:checked ~ .form-accept-label .checkbox .icon-active {
+.user-privacy:checked ~ .form-accept-label .checkbox .icon-active {
   opacity: 1;
   color: var(--color-focus);
 }
@@ -787,12 +792,12 @@ a {
   border-radius: 50%;
   background: var(--cornflower);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  transition-property: background-color, border, fill;
+  transition-property: background-color, border;
 }
 
 .btn-close-icon {
   min-width: 100%;
-  transition-property: transition;
+  transition-property: fill;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
