@@ -752,7 +752,7 @@ a {
 }
 
 #user-privacy:checked ~ .form-accept-label span {
-  border-color: transparent;
+  border: none;
   background-color: #404bbf;
   fill: #404bbf;
 }
