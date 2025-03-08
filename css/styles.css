@@ -754,7 +754,6 @@ a {
 
 #user-privacy:checked + .form-accept-label .checkbox {
   background-color: #404bbf;
-  border: none;
 }
 
 #user-privacy:checked + .form-accept-label .checkbox .icon-active {
