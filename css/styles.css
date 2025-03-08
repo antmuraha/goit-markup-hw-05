@@ -746,18 +746,18 @@ a {
 
 .checkbox .icon-active {
   color: transparent;
+  fill: transparent;
   transition-property: color;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
 
-#user-privacy:checked ~ .form-accept-label span {
+#user-privacy:checked + .form-accept-label .checkbox {
   background-color: #404bbf;
   border: none;
-  fill: #F4F4FD;
 }
 
-#user-privacy:checked ~ .form-accept-label span .icon-active {
+#user-privacy:checked + .form-accept-label .checkbox .icon-active {
   opacity: 1;
   color: var(--color-focus);
 }
