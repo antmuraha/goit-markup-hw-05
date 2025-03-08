@@ -738,6 +738,7 @@ a {
   height: 16px;
   border-radius: 2px;
   border: 1px solid var(--navy-blue-modal);
+  fill: transparent;
   transition-property: border, background-color, fill;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
@@ -745,16 +746,15 @@ a {
 
 .checkbox .icon-active {
   color: transparent;
-  fill: transparent;
   transition-property: color;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
 
 #user-privacy:checked ~ .form-accept-label span {
-  border: none;
   background-color: #404bbf;
-  fill: #404bbf;
+  border: none;
+  fill: #F4F4FD;
 }
 
 #user-privacy:checked ~ .form-accept-label span .icon-active {
